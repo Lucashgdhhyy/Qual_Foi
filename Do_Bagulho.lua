@@ -1,15 +1,21 @@
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
-local MarketplaceService = game:GetService("MarketplaceService")
 
 -- Função para detectar se o jogo é Blox Fruits
 local function isBloxFruits()
     return game.PlaceId == 2753915549
 end
 
--- Executar o script se o jogo for Blox Fruits
+-- Função para detectar se o jogo é Prison Life
+local function isPrisonLife()
+    return game.PlaceId == 155615604
+end
+
+-- Executar o script apropriado com base no jogo
 if isBloxFruits() then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/blox.lua"))()
+elseif isPrisonLife() then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/prision.lua"))()
 else
-    warn("Este script só pode ser executado no Blox Fruits.")
+    warn("Este script só pode ser executado no Blox Fruits ou Prison Life.")
 end
