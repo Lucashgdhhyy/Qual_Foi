@@ -46,6 +46,9 @@ local Paragraph = Tab:CreateParagraph({Title = "Doors", Content = "não terminad
 
 local Tab = Window:CreateTab("Universal", 4483362458) -- Title, Image
 
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Teams = game:GetService("Teams")
 local RunService = game:GetService("RunService")
 
 -- Função para criar um bloco colorido e o nome/vida em cima dos Humanoids de outros jogadores
@@ -128,3 +131,72 @@ local function createBoxAndInfoForHumanoids()
         end
     end
 end
+
+-- Função para remover os blocos e as informações
+local function removeBoxesAndInfo()
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            local character = player.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                local box = character.HumanoidRootPart:FindFirstChild("TeamBox")
+                local info = character.HumanoidRootPart:FindFirstChild("PlayerInfo")
+                if box then
+                    box:Destroy()
+                end
+                if info then
+                    info:Destroy()
+                end
+            end
+        end
+    end
+end
+
+-- Crie o toggle usando OrionLib
+local Toggle = Tab:CreateToggle({
+   Name = "ESP",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+       if Value then
+           -- Quando ativado, crie as caixas e as informações
+           createBoxAndInfoForHumanoids()
+       else
+           -- Quando desativado, remova as caixas e as informações
+           removeBoxesAndInfo()
+       end
+   end,
+})
+
+-- Função para atualizar as caixas e as informações quando um jogador muda de time
+local function onPlayerTeamChanged(player)
+    if player ~= LocalPlayer then
+        -- Remova qualquer caixa existente e informações
+        local character = player.Character
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            local box = character.HumanoidRootPart:FindFirstChild("TeamBox")
+            local info = character.HumanoidRootPart:FindFirstChild("PlayerInfo")
+            if box then
+                box:Destroy()
+            end
+            if info then
+                info:Destroy()
+            end
+        end
+
+        -- Crie uma nova caixa e informações com a nova cor do time
+        createBoxAndInfoForHumanoids()
+    end
+end
+
+-- Conecte os eventos de mudança de time
+for _, player in pairs(Players:GetPlayers()) do
+    player:GetPropertyChangedSignal("Team"):Connect(function()
+        onPlayerTeamChanged(player)
+    end)
+end
+
+Players.PlayerAdded:Connect(function(player)
+    player:GetPropertyChangedSignal("Team"):Connect(function()
+        onPlayerTeamChanged(player)
+    end)
+end)
