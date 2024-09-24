@@ -27,20 +27,7 @@ local Window = Rayfield:CreateWindow({
 
 local FarmTab = Window:CreateTab("Auto Farm🤖", 4483362458) -- Title, Image
 
-Rayfield:Notify({
-   Title = "Aviso!",
-   Content = "Não temos auto farm isto ira vir pela frente!",
-   Duration = 6.5,
-   Image = 4483362458,
-   Actions = { -- Notification Buttons
-      Ignore = {
-         Name = "Okay!",
-         Callback = function()
-         print("The user tapped Okay!")
-      end
-   },
-},
-})
+local Paragraph = FarmTab:CreateParagraph({Title = "Auto Farm", Content = "Não funcionando utilize os scripts de auto farm abaixo!"})
 
 local Section = FarmTab:CreateSection("Scripts de auto farm")
 
@@ -71,7 +58,7 @@ local PlayerTab = Window:CreateTab("Player🧍", 4483362458) -- Title, Image
 local Dropdown = PlayerTab:CreateDropdown({
     Name = "Força do Dash",
     Options = {"50", "100", "150", "200", "250", "300", "350", "400", "450", "500"},
-    CurrentOption = {"100"},  -- Valor inicial
+    CurrentOption = {"50"},  -- Valor inicial
     MultipleOptions = false,
     Flag = "DropdownDashLength", -- Uma flag única para evitar conflitos no arquivo de configuração
     Callback = function(Option)
