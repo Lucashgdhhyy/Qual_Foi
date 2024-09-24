@@ -1,20 +1,4 @@
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/ui.lua'))()
-
-Rayfield:Notify({
-   Title = "Jogo não suportado",
-   Content = "O jogo " .. CurrentGame .. " não é suportado. Lista dos jogos suportados na janela.",
-   Duration = 6.5,
-   Image = 4483362458,
-   Actions = { -- Notification Buttons
-      Ignore = {
-         Name = "Okay!",
-         Callback = function()
-         print("The user tapped Okay!")
-      end
-   },
-},
-})
-
 local Window = Rayfield:CreateWindow({
    Name = "QFB|Suporte list",
    LoadingTitle = "Carregando...",
@@ -40,19 +24,14 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
-
-
 local Tab = Window:CreateTab("Suporte", 4483362458) -- Title, Image
-
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local CurrentGame = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-
 local Paragraph = Tab:CreateParagraph({
     Title = "Este jogo não é suportado", 
-    Content = "O jogo " .. CurrentGame .. " não é suportado. Lista dos jogos suportados abaixo."
+    Content = "O jogo " .. CurrentGame .. " não é suportado. Jogos suportados abaixo."
 })
-
 local Paragraph = Tab:CreateParagraph({Title = "Blox Fruit", Content = ""})
 
 local Paragraph = Tab:CreateParagraph({Title = "Prision Life", Content = ""})
