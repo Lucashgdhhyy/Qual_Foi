@@ -30,7 +30,8 @@ local LocalPlayer = Players.LocalPlayer
 local CurrentGame = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 local Paragraph = Tab:CreateParagraph({
     Title = "Este jogo não é suportado", 
-    Content = "O jogo " .. CurrentGame .. " não é suportado. Jogos suportados abaixo."
+    Content = "O jogo " .. CurrentGame .. "
+      não é suportado. Jogos suportados abaixo."
 })
 local Paragraph = Tab:CreateParagraph({Title = "Blox Fruit", Content = ""})
 
