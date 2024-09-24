@@ -69,17 +69,17 @@ local Toggle = PlayerTab:CreateToggle({
 game:GetService("RunService").Heartbeat:Connect(function()
     if isActive and character and character:FindFirstChild("HumanoidRootPart") then
         local rootPart = character.HumanoidRootPart
-        block.Position = Vector3.new(rootPart.Position.X, 1, rootPart.Position.Z) -- Define a posição do bloco na altura 1
+        block.Position = Vector3.new(rootPart.Position.X, 0, rootPart.Position.Z) -- Define a posição do bloco na altura 1
     end
 end)
 
 
  local Slider = PlayerTab:CreateSlider({
     Name = "Velocidade",
-    Range = {1, 10},
+    Range = {1, 15},
     Increment = 1,
     Suffix = "Speed",
-    CurrentValue = 10,
+    CurrentValue = 1,
     Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
      game.Players.LocalPlayer.Character:SetAttribute("SpeedMultiplier", Value)
