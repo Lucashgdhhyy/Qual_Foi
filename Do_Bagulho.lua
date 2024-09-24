@@ -17,5 +17,6 @@ if isBloxFruits() then
 elseif isPrisonLife() then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/prision.lua"))()
 else
-    warn("Este script só pode ser executado no Blox Fruits ou Prison Life.")
+    -- Executar script de suporte se não estiver em um jogo suportado
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/support.lua"))()
 end
