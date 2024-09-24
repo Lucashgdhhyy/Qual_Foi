@@ -43,6 +43,37 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/ma
 
 local PlayerTab = Window:CreateTab("Player🧍", 4483362458) -- Title, Image
 
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local block = Instance.new("Part") -- Cria um novo bloco
+block.Size = Vector3.new(7, 1, 7) -- Tamanho do bloco
+block.Anchored = true -- O bloco não se moverá devido à gravidade
+block.Color = Color3.new(0, 1, 0) -- Cor verde
+block.Parent = workspace -- Adiciona o bloco ao workspace
+
+local isActive = false -- Variável para controle do estado do toggle
+
+local Toggle = PlayerTab:CreateToggle({
+    Name = "Andar sobre Agua",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag é o identificador para o arquivo de configuração
+    Callback = function(Value)
+        isActive = Value -- Atualiza o estado com base no valor do toggle
+        if not Value then
+            block.Position = Vector3.new(0, -10, 0) -- Move o bloco para fora da vista quando desativado
+        end
+    end,
+})
+
+-- Loop para mover o bloco
+game:GetService("RunService").Heartbeat:Connect(function()
+    if isActive and character and character:FindFirstChild("HumanoidRootPart") then
+        local rootPart = character.HumanoidRootPart
+        block.Position = Vector3.new(rootPart.Position.X, 1, rootPart.Position.Z) -- Define a posição do bloco na altura 1
+    end
+end)
+
+
  local Slider = PlayerTab:CreateSlider({
     Name = "Velocidade",
     Range = {1, 10},
@@ -54,6 +85,7 @@ local PlayerTab = Window:CreateTab("Player🧍", 4483362458) -- Title, Image
      game.Players.LocalPlayer.Character:SetAttribute("SpeedMultiplier", Value)
     end,
  })
+
 
 local Dropdown = PlayerTab:CreateDropdown({
     Name = "Força do Dash",
