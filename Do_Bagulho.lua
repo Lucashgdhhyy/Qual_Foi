@@ -41,33 +41,6 @@ local function bloxFruitsScript()
     end
 end
 
--- Função para inicializar o sistema de chaves do Rayfield
-local Window = Rayfield:CreateWindow({
-    Name = "QFB Key System",
-    LoadingTitle = "Rayfield Interface Suite",
-    LoadingSubtitle = "by Sirius",
-    ConfigurationSaving = {
-        Enabled = true,
-        FolderName = nil, -- Criar uma pasta personalizada para o seu hub/jogo
-        FileName = "Big Hub"
-    },
-    Discord = {
-        Enabled = false,
-        Invite = "noinvitelink", -- O código de convite do Discord, sem incluir discord.gg/. Ex: discord.gg/ABCD seria apenas ABCD
-        RememberJoins = true -- Definir como false para forçar o usuário a ingressar no Discord toda vez que carregar
-    },
-    KeySystem = true, -- Habilitar o sistema de chave
-    KeySettings = {
-        Title = "QFB",
-        Subtitle = "Key System",
-        Note = "Copiado para o teclado",
-        FileName = "Key", -- Usar um nome único para evitar que outros scripts sobrescrevam o arquivo da chave
-        SaveKey = true, -- A chave será salva, mas se for alterada, o usuário não poderá mais usar o script
-        GrabKeyFromSite = false, -- Definir como true para pegar a chave de um site RAW
-        Key = {"QFB"} -- Lista de chaves aceitas pelo sistema
-    }
-})
-
 -- Executar o script apropriado com base no jogo
 if isBloxFruits() then
     bloxFruitsScript()
