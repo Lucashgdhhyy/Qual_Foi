@@ -87,7 +87,7 @@ local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 
 local Slider = Tab:CreateSlider({
-    Name = "Slider Example",
+    Name = "Velocidade",
     Range = {0, 100},
     Increment = 1,
     Suffix = "Speed",
@@ -100,3 +100,48 @@ local Slider = Tab:CreateSlider({
 
 -- Define a velocidade inicial do humanoide com o valor atual do slider
 humanoid.WalkSpeed = Slider:GetCurrentValue()
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Tab = ... -- O objeto do seu Tab deve ser definido corretamente
+
+local Toggle = Tab:CreateToggle({
+   Name = "Matar todo mundo",
+   CurrentValue = false,
+   Flag = "Toggle1", -- Identificador para o arquivo de configuração
+   Callback = function(Value)
+       if Value then
+           -- Ativa o toggle
+           for _, player in pairs(Players:GetPlayers()) do
+               if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Humanoid") then
+                   local targetHumanoid = player.Character.Humanoid
+                   local targetPosition = player.Character.HumanoidRootPart.Position
+
+                   -- Teleporta o Humanoid local para o Humanoid do jogador alvo
+                   LocalPlayer.Character.HumanoidRootPart.CFrame = targetHumanoid.RootPart.CFrame
+                   
+                   -- Move suavemente para a nova posição em 5 segundos
+                   local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Linear)
+                   local tween = game:GetService("TweenService"):Create(LocalPlayer.Character.HumanoidRootPart, tweenInfo, {Position = targetPosition})
+                   tween:Play()
+
+                   -- Aguarda o tween terminar antes de ir para o próximo jogador
+                   tween.Completed:Wait()
+               end
+           end
+       end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Kill players",
+   Callback = function()            while wait () do
+  for i, e in pairs(game.Players:GetChildren()) do
+                        if e ~= game.Players.LocalPlayer then
+                            local meleeEvent = game:GetService("ReplicatedStorage").meleeEvent
+                            meleeEvent:FireServer(e)
+                            
+                        end end end 
+   -- The function that takes place when the button is pressed
+   end,
+})
