@@ -1,4 +1,20 @@
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/ui.lua'))()
+
+Rayfield:Notify({
+   Title = "Jogo não suportado",
+   Content = "O jogo " .. CurrentGame .. " não é suportado. Lista dos jogos suportados na janela.",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+
 local Window = Rayfield:CreateWindow({
    Name = "QFB|Suporte list",
    LoadingTitle = "Carregando...",
@@ -27,21 +43,6 @@ local Window = Rayfield:CreateWindow({
 
 
 local Tab = Window:CreateTab("Suporte", 4483362458) -- Title, Image
-
-Rayfield:Notify({
-   Title = "Jogo não suportado",
-   Content = "O jogo " .. CurrentGame .. " não é suportado. Lista dos jogos suportados abaixo.",
-   Duration = 6.5,
-   Image = 4483362458,
-   Actions = { -- Notification Buttons
-      Ignore = {
-         Name = "Okay!",
-         Callback = function()
-         print("The user tapped Okay!")
-      end
-   },
-},
-})
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
