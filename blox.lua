@@ -69,7 +69,7 @@ local Toggle = PlayerTab:CreateToggle({
 game:GetService("RunService").Heartbeat:Connect(function()
     if isActive and character and character:FindFirstChild("HumanoidRootPart") then
         local rootPart = character.HumanoidRootPart
-        block.Position = Vector3.new(rootPart.Position.X, -6, rootPart.Position.Z) -- Define a posição do bloco na altura 1
+        block.Position = Vector3.new(rootPart.Position.X, -5, rootPart.Position.Z) -- Define a posição do bloco na altura 1
     end
 end)
 
