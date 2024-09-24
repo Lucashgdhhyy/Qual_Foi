@@ -142,6 +142,5 @@ local Button = Tab:CreateButton({
                             meleeEvent:FireServer(e)
                             
                         end end end 
-   -- The function that takes place when the button is pressed
    end,
 })
