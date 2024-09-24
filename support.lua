@@ -46,10 +46,6 @@ local Paragraph = Tab:CreateParagraph({Title = "Doors", Content = "não terminad
 
 local Tab = Window:CreateTab("Universal", 4483362458) -- Title, Image
 
--- Supondo que OrionLib esteja carregado
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local Teams = game:GetService("Teams")
 local RunService = game:GetService("RunService")
 
 -- Função para criar um bloco colorido e o nome/vida em cima dos Humanoids de outros jogadores
@@ -106,90 +102,29 @@ local function createBoxAndInfoForHumanoids()
                 -- Adiciona o BillboardGui à HumanoidRootPart
                 billboardGui.Parent = character.HumanoidRootPart
 
-                -- Atualiza a barra de vida e a distância a cada frame
-                RunService.RenderStepped:Connect(function()
-                    if character and character:FindFirstChild("Humanoid") then
-                        local humanoid = character:FindFirstChild("Humanoid")
+                -- Variável para controlar o tempo
+                local timeElapsed = 0
+                
+                -- Atualiza a barra de vida e a distância
+                RunService.Heartbeat:Connect(function(deltaTime)
+                    timeElapsed = timeElapsed + deltaTime
+                    if timeElapsed >= 0.001 then
+                        if character and character:FindFirstChild("Humanoid") then
+                            local humanoid = character:FindFirstChild("Humanoid")
 
-                        -- Atualiza a barra de vida com base na vida atual do jogador
-                        local healthPercent = humanoid.Health / humanoid.MaxHealth
-                        healthFill.Size = UDim2.new(healthPercent, 0, 1, 0)
+                            -- Atualiza a barra de vida com base na vida atual do jogador
+                            local healthPercent = humanoid.Health / humanoid.MaxHealth
+                            healthFill.Size = UDim2.new(healthPercent, 0, 1, 0)
 
-                        -- Calcula a distância entre o jogador local e o jogador alvo
-                        local distance = (LocalPlayer.Character.HumanoidRootPart.Position - character.HumanoidRootPart.Position).Magnitude
-                        nameLabel.Text = string.format("%s (%.0f studs)", player.Name, distance)
+                            -- Calcula a distância entre o jogador local e o jogador alvo
+                            local distance = (LocalPlayer.Character.HumanoidRootPart.Position - character.HumanoidRootPart.Position).Magnitude
+                            nameLabel.Text = string.format("%s (%.0f studs)", player.Name, distance)
+                        end
+                        -- Reseta o contador de tempo
+                        timeElapsed = 0
                     end
                 end)
             end
         end
     end
 end
-
--- Função para remover os blocos e as informações
-local function removeBoxesAndInfo()
-    for _, player in pairs(Players:GetPlayers()) do
-        if player ~= LocalPlayer then
-            local character = player.Character
-            if character and character:FindFirstChild("HumanoidRootPart") then
-                local box = character.HumanoidRootPart:FindFirstChild("TeamBox")
-                local info = character.HumanoidRootPart:FindFirstChild("PlayerInfo")
-                if box then
-                    box:Destroy()
-                end
-                if info then
-                    info:Destroy()
-                end
-            end
-        end
-    end
-end
-
--- Crie o toggle usando OrionLib
-local Toggle = Tab:CreateToggle({
-   Name = "Toggle Team Info",
-   CurrentValue = false,
-   Flag = "Toggle1",
-   Callback = function(Value)
-       if Value then
-           -- Quando ativado, crie as caixas e as informações
-           createBoxAndInfoForHumanoids()
-       else
-           -- Quando desativado, remova as caixas e as informações
-           removeBoxesAndInfo()
-       end
-   end,
-})
-
--- Função para atualizar as caixas e as informações quando um jogador muda de time
-local function onPlayerTeamChanged(player)
-    if player ~= LocalPlayer then
-        -- Remova qualquer caixa existente e informações
-        local character = player.Character
-        if character and character:FindFirstChild("HumanoidRootPart") then
-            local box = character.HumanoidRootPart:FindFirstChild("TeamBox")
-            local info = character.HumanoidRootPart:FindFirstChild("PlayerInfo")
-            if box then
-                box:Destroy()
-            end
-            if info then
-                info:Destroy()
-            end
-        end
-
-        -- Crie uma nova caixa e informações com a nova cor do time
-        createBoxAndInfoForHumanoids()
-    end
-end
-
--- Conecte os eventos de mudança de time
-for _, player in pairs(Players:GetPlayers()) do
-    player:GetPropertyChangedSignal("Team"):Connect(function()
-        onPlayerTeamChanged(player)
-    end)
-end
-
-Players.PlayerAdded:Connect(function(player)
-    player:GetPropertyChangedSignal("Team"):Connect(function()
-        onPlayerTeamChanged(player)
-    end)
-end)
