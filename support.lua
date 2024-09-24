@@ -38,6 +38,12 @@ local Paragraph = Tab:CreateParagraph({
 
 
 local Paragraph = Tab:CreateParagraph({Title = "Blox Fruit", Content = "V1"})
+local Button = Tab:CreateButton({
+   Name = "Blox Fruit",
+   Callback = function()           loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/blox.lua"))()
+   -- The function that takes place when the button is pressed
+   end,
+})
 
 local Paragraph = Tab:CreateParagraph({Title = "Prision Life", Content = "V0.8"})
 
