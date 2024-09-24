@@ -36,8 +36,8 @@ local Paragraph = Tab:CreateParagraph({
 })
 
 
-local Paragraph = Tab:CreateParagraph({Title = "Blox Fruit", Content = ""})
+local Paragraph = Tab:CreateParagraph({Title = "Blox Fruit", Content = "V1"})
 
-local Paragraph = Tab:CreateParagraph({Title = "Prision Life", Content = ""})
+local Paragraph = Tab:CreateParagraph({Title = "Prision Life", Content = "V0.8"})
 
-local Paragraph = Tab:CreateParagraph({Title = "Doors(não terminado)", Content = ""})
+local Paragraph = Tab:CreateParagraph({Title = "Doors", Content = "não terminado"})
