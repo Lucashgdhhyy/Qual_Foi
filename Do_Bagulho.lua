@@ -17,40 +17,36 @@ local Window = ArrayField:CreateWindow({
     KeySettings = {
        Title = "Untitled",
        Subtitle = "Key System",
-       Note = "No method of obtaining the key is provided",
+       Note = "O primeiro script hub/script br",
        FileName = "Key", -- It is recommended to use something unique as other scripts using ArrayField may overwrite your key file
        SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
        GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like ArrayField to get the key from
        Actions = {
              [1] = {
-                 Text = 'Click here to copy the key link <--',
+                 Text = 'Clique aqui para copiar a key <--',
                  OnPress = function()
                      print('Pressed')
                  end,
                  }
              },
-       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+       Key = {"durk.hts"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
     }
  })
-local Tab = Window:CreateTab("Suporte", 4483362458) -- Title, Image
+ local Tab = Window:CreateTab("Game List", 4483362458) -- Title, Image
 
-local Paragraph = Tab:CreateParagraph({Title = "Aviso!", Content = "Selecione o jogo que você vai jogar"})
-
-local Paragraph = Tab:CreateParagraph({Title = "Blox Fruits", Content = "V1"})
-local Button = Tab:CreateButton({
-   Name = "Blox Fruit",
+ local Button = Tab:CreateButton({
+   Name = "Blox Fruits V1",
    Interact = 'Click',
    Callback = function()        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/blox.lua"))()
    -- The function that takes place when the button is pressed
    end,
 })
 
-local Paragraph = Tab:CreateParagraph({Title = "Prision Life", Content = "V0.8 "})
 
 local Button = Tab:CreateButton({
-   Name = "Prision Life",
+   Name = "Prision Life V0.8",
    Interact = 'Click',
-   Callback = function()        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/prision.lua"))()
+   Callback = function()         loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/prision.lua"))()
    -- The function that takes place when the button is pressed
    end,
 })
