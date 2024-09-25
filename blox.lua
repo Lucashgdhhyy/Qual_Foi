@@ -81,6 +81,47 @@ game:GetService("RunService").Heartbeat:Connect(function()
 end)
 
 
+local UserInputService = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local jumpCount = 0
+
+local canDoubleJump = false -- Controla se o pulo duplo está ativado
+
+local function onJumpRequest()
+    if canDoubleJump then
+        humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end
+
+-- Toggle para ativar/desativar o pulo duplo
+local Toggle = Tab:CreateToggle({
+    Name = "Pulo Duplo Infinito",
+    CurrentValue = false,
+    Flag = "ToggleDoubleJump",
+    Callback = function(Value)
+        canDoubleJump = Value
+        if not Value then
+            jumpCount = 0 -- Reseta o contador de pulo quando o toggle for desativado
+        end
+    end,
+})
+
+-- Verifica quando o jogador pula
+UserInputService.JumpRequest:Connect(function()
+    if humanoid:GetState() == Enum.HumanoidStateType.Freefall and canDoubleJump then
+        jumpCount += 1
+        if jumpCount < 150000 then -- Exemplo de limite de 5 pulos
+            onJumpRequest()
+        else
+            jumpCount = 0 -- Reseta após atingir o limite
+        end
+    end
+end)
+
+
  local Slider = Tab:CreateSlider({
     Name = "Velocidade",
     Range = {1, 10},
@@ -94,16 +135,15 @@ end)
  })
 
 
-local Dropdown = Tab:CreateDropdown({
+ local Slider = Tab:CreateSlider({
     Name = "Força do Dash",
-    Options = {"50", "100", "150", "200", "250", "300", "350", "400", "450", "500"},
-    CurrentOption = {"50"},  -- Valor inicial
-    MultipleOptions = false,
-    Flag = "DropdownDashLength", -- Uma flag única para evitar conflitos no arquivo de configuração
-    Callback = function(Option)
-        -- A função que é chamada quando a opção selecionada é alterada
-        -- A variável (Option) é uma tabela de strings para as opções atualmente selecionadas
-        local Value = tonumber(Option[1])  -- Converte a opção selecionada para número
+    Range = {50, 500},  -- O intervalo do slider, de 50 a 500
+    Increment = 50,  -- Os incrementos de 50 em 50
+    Suffix = "",  -- Não é necessário sufixo, mas pode ser adicionado se desejar
+    CurrentValue = 50,  -- Valor inicial
+    Flag = "SliderDashLength",  -- Uma flag única para evitar conflitos no arquivo de configuração
+    Callback = function(Value)
+        -- A função que é chamada quando o valor do slider é alterado
         game.Players.LocalPlayer.Character:SetAttribute("DashLength", Value)
     end,
 })
