@@ -35,7 +35,8 @@ local Window = ArrayField:CreateWindow({
 
 local FarmTab = Window:CreateTab("Auto Farm🤖", 4483362458) -- Title, Image
 
-local Paragraph = FarmTab:CreateParagraph({Title = "Auto Farm", Content = "Não funcionando utilize os scripts de auto farm abaixo!"})
+local Label = Tab:CreateLabel("AVISO!")
+local Label = Tab:CreateLabel("Auto Farm não terminado")})
 
 local Section = FarmTab:CreateSection("Scripts de auto farm")
 
