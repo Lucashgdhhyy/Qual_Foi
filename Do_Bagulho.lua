@@ -32,37 +32,25 @@ local Window = ArrayField:CreateWindow({
        Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
     }
  })
-local Tab = Window:CreateTab("Jogos", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Suporte", 4483362458) -- Title, Image
 
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local CurrentGame = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+local Paragraph = Tab:CreateParagraph({Title = "Aviso!", Content = "Selecione o jogo que você vai jogar"})
 
-local Paragraph = Tab:CreateParagraph({Title = "" .. CurrentGame .. "", Content = "Não e suportado veja os jogos abaixo"})
-
-
-local Paragraph = Tab:CreateParagraph({Title = "Blox Fruit", Content = "V1"})
+local Paragraph = Tab:CreateParagraph({Title = "Blox Fruits", Content = "V1"})
 local Button = Tab:CreateButton({
    Name = "Blox Fruit",
-   Callback = function()           loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/blox.lua"))()
+   Interact = 'Click',
+   Callback = function()        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/blox.lua"))()
    -- The function that takes place when the button is pressed
    end,
 })
 
-local Paragraph = Tab:CreateParagraph({Title = "Prision Life", Content = "V0.8"})
+local Paragraph = Tab:CreateParagraph({Title = "Prision Life", Content = "V0.8 "})
 
 local Button = Tab:CreateButton({
    Name = "Prision Life",
-   Callback = function()           loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/prision.lua"))()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Paragraph = Tab:CreateParagraph({Title = "Doors", Content = "não terminado"})
-
-local Button = Tab:CreateButton({
-   Name = "Doors",
-   Callback = function()           
+   Interact = 'Click',
+   Callback = function()        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/prision.lua"))()
    -- The function that takes place when the button is pressed
    end,
 })
