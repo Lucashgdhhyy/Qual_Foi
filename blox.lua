@@ -33,14 +33,12 @@ local Window = ArrayField:CreateWindow({
     }
  })
 
-local FarmTab = Window:CreateTab("Auto Farm🤖", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Auto Farm🤖", 4483362458) -- Title, Image
 
 local Label = Tab:CreateLabel("AVISO!")
-local Label = Tab:CreateLabel("Auto Farm não terminado")})
+local Label = Tab:CreateLabel("Auto Farm não terminado")
 
-local Section = FarmTab:CreateSection("Scripts de auto farm")
-
-local Button = FarmTab:CreateButton({
+local Button = Tab:CreateButton({
    Name = "[Redz Hub]",
    Callback = function()           --[[
 	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
@@ -50,7 +48,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/ma
    end,
 })
 
-local PlayerTab = Window:CreateTab("Player🧍", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Player🧍", 4483362458) -- Title, Image
 
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -62,7 +60,7 @@ block.Parent = workspace -- Adiciona o bloco ao workspace
 
 local isActive = false -- Variável para controle do estado do toggle
 
-local Toggle = PlayerTab:CreateToggle({
+local Toggle = Tab:CreateToggle({
     Name = "Andar sobre Agua",
     CurrentValue = false,
     Flag = "Toggle1", -- A flag é o identificador para o arquivo de configuração
@@ -83,7 +81,7 @@ game:GetService("RunService").Heartbeat:Connect(function()
 end)
 
 
- local Slider = PlayerTab:CreateSlider({
+ local Slider = Tab:CreateSlider({
     Name = "Velocidade",
     Range = {1, 10},
     Increment = 1,
@@ -96,7 +94,7 @@ end)
  })
 
 
-local Dropdown = PlayerTab:CreateDropdown({
+local Dropdown = Tab:CreateDropdown({
     Name = "Força do Dash",
     Options = {"50", "100", "150", "200", "250", "300", "350", "400", "450", "500"},
     CurrentOption = {"50"},  -- Valor inicial
