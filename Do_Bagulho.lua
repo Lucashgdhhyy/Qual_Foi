@@ -32,16 +32,13 @@ local Window = ArrayField:CreateWindow({
        Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
     }
  })
-local Tab = Window:CreateTab("Suporte", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Jogos", 4483362458) -- Title, Image
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local CurrentGame = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
-local Paragraph = Tab:CreateParagraph({
-    Title = "Este jogo não é suportado", 
-    Content = "O jogo " .. CurrentGame .. " não é suportado. Lista dos jogos suportados abaixo."
-})
+local Paragraph = Tab:CreateParagraph({Title = "" .. CurrentGame .. "", Content = "Não e suportado veja os jogos abaixo"})
 
 
 local Paragraph = Tab:CreateParagraph({Title = "Blox Fruit", Content = "V1"})
