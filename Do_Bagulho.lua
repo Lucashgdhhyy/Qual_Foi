@@ -50,3 +50,11 @@ local Button = Tab:CreateButton({
    -- The function that takes place when the button is pressed
    end,
 })
+
+local Button = Tab:CreateButton({
+   Name = "Doors V0.2",
+   Interact = 'Click',
+   Callback = function()               loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/doors.lua"))()
+   -- The function that takes place when the button is pressed
+   end,
+})
