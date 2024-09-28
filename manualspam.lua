@@ -12,7 +12,7 @@ b.Position = UDim2.new(1, -210, 0, 10) -- Posição fixa no canto superior direi
 b.AnchorPoint = Vector2.new(1, 0)
 b.BackgroundColor3 = Color3.new(0, 0, 0)
 b.BorderSizePixel = 0 -- Remove a borda padrão
-b.Text = "MANUAL SPAM"
+b.Text = "Spam Manual!"
 b.TextColor3 = Color3.new(1, 1, 1)
 b.TextScaled = true
 b.Font = Enum.Font.LuckiestGuy
@@ -29,7 +29,7 @@ border.Parent = b
 local t = false
 b.MouseButton1Click:Connect(function()
     t = not t
-    b.Text = t and "ON" or "OFF"
+    b.Text = t and "Desligar?" or "Ligar?"
     while t do
         v:SendMouseButtonEvent(0, 0, 0, true, game, 0)
         wait()
