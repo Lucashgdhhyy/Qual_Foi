@@ -8,10 +8,11 @@ s.Parent = game.CoreGui
 
 local b = Instance.new("TextButton")
 b.Size = UDim2.new(0, 200, 0, 50)
-b.Position = UDim2.new(1, -210, 0, 10) -- Posição inicial no canto superior direito
-b.AnchorPoint = Vector2.new(1, 0)
+b.Position = UDim2.new(0.5, -100, 0.5, -25)
+b.AnchorPoint = Vector2.new(0.5, 0.5)
 b.BackgroundColor3 = Color3.new(0, 0, 0)
-b.BorderSizePixel = 0 -- Remove a borda padrão
+b.BorderSizePixel = 2
+b.BorderColor3 = Color3.new(1, 1, 1)
 b.Text = "MANUAL SPAM"
 b.TextColor3 = Color3.new(1, 1, 1)
 b.TextScaled = true
@@ -19,12 +20,6 @@ b.Font = Enum.Font.LuckiestGuy
 b.TextXAlignment = Enum.TextXAlignment.Center
 b.TextYAlignment = Enum.TextYAlignment.Center
 b.Parent = s
-
--- Adiciona um UIStroke para criar a borda RGB
-local border = Instance.new("UIStroke")
-border.Color3 = Color3.new(1, 0, 0) -- Começa com vermelho
-border.Thickness = 5 -- Espessura da borda
-border.Parent = b
 
 local t = false
 b.MouseButton1Click:Connect(function()
@@ -35,19 +30,6 @@ b.MouseButton1Click:Connect(function()
         wait()
     end
 end)
-
--- Função para mudar a cor da borda para RGB
-local function updateBorderColor()
-    while true do
-        for i = 0, 1, 0.01 do
-            border.Color3 = Color3.fromHSV(i, 1, 1) -- Altera a cor da borda
-            wait(0.1) -- Ajuste o tempo para a velocidade desejada
-        end
-    end
-end
-
--- Inicia a atualização da cor da borda
-updateBorderColor()
 
 local d
 local i
