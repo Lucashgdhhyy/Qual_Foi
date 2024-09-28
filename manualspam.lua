@@ -8,11 +8,11 @@ s.Parent = game.CoreGui
 
 local b = Instance.new("TextButton")
 b.Size = UDim2.new(0, 200, 0, 50)
-b.Position = UDim2.new(1, -210, 0, 10) -- Posição fixa no canto superior direito
+b.Position = UDim2.new(1, -210, 0, 10) -- Posição inicial no canto superior direito
 b.AnchorPoint = Vector2.new(1, 0)
 b.BackgroundColor3 = Color3.new(0, 0, 0)
 b.BorderSizePixel = 0 -- Remove a borda padrão
-b.Text = "Spam Manual!"
+b.Text = "MANUAL SPAM"
 b.TextColor3 = Color3.new(1, 1, 1)
 b.TextScaled = true
 b.Font = Enum.Font.LuckiestGuy
@@ -29,7 +29,7 @@ border.Parent = b
 local t = false
 b.MouseButton1Click:Connect(function()
     t = not t
-    b.Text = t and "Desligar?" or "Ligar?"
+    b.Text = t and "ON" or "OFF"
     while t do
         v:SendMouseButtonEvent(0, 0, 0, true, game, 0)
         wait()
@@ -54,7 +54,10 @@ local i
 local ds
 local sp
 
--- A função para mover o botão foi removida, pois não queremos que ele seja movível.
+local function u(input)
+    local delta = input.Position - ds
+    b.Position = UDim2.new(sp.X.Scale, sp.X.Offset + delta.X, sp.Y.Scale, sp.Y.Offset + delta.Y)
+end
 
 b.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
@@ -77,6 +80,6 @@ end)
 
 game:GetService("UserInputService").InputChanged:Connect(function(input)
     if d and input == i then
-        -- A movimentação do botão foi removida.
+        u(input)
     end
 end)
