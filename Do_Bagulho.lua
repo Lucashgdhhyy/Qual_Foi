@@ -1,4 +1,18 @@
 local ArrayField = loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/ui.lua'))()
+ArrayField:Notify({
+   Title = "Aviso!",
+   Content = "Pegue a keysystem do nosso script para fortalecer nossa equipe e continuar com o trabalho!",
+   Duration = 12,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+ },
+})
 local Window = ArrayField:CreateWindow({
     Name = "QFB|Lista de jogos",
     LoadingTitle = "Carregando...",
@@ -15,16 +29,29 @@ local Window = ArrayField:CreateWindow({
     },
     KeySystem = false, -- Set this to true to use our key system
     KeySettings = {
-       Title = "Untitled",
+       Title = "QFB",
        Subtitle = "Key System",
-       Note = "O primeiro script hub/script br",
+       Note = "",
        FileName = "Key", -- It is recommended to use something unique as other scripts using ArrayField may overwrite your key file
        SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
        GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like ArrayField to get the key from
        Actions = {
              [1] = {
                  Text = 'Clique aqui para copiar a key <--',
-                 OnPress = function()
+                 OnPress = function()               setclipboard("gateway.platoboost.com/l/24151/Durkmcteaming")            ArrayField:Notify({
+   Title = "Copiado!",
+   Content = "Link: gateway.platoboost.com/l/24151/Durkmcteaming",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+ },
+})
                      print('Pressed')
                  end,
                  }
