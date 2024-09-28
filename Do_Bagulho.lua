@@ -89,7 +89,7 @@ local Button = Tab:CreateButton({
 local Button = Tab:CreateButton({
    Name = "Blade Ball V0.1",
    Interact = 'Click',
-   Callback = function()               loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/manualspam.lua"))()
+   Callback = function()               loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucashgdhhyy/Qual_Foi/refs/heads/main/bladeball.lua"))()
    -- The function that takes place when the button is pressed
    end,
 })
