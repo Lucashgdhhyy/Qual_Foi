@@ -56,7 +56,7 @@ local Window = ArrayField:CreateWindow({
                  end,
                  }
              },
-       Key = {"durk.hts"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+       Key = {"QFBKEY_D1L4I9"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
     }
  })
  local Tab = Window:CreateTab("Game List", 4483362458) -- Title, Image
